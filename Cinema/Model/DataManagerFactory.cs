@@ -56,6 +56,7 @@ namespace Model
             if (l_cinemas == null)
             {
                 l_cinemas = _cinemaDataManager.Load();
+                Provider.Add(DataType.Cinema, l_cinemas);
             }
             return l_cinemas;
         }

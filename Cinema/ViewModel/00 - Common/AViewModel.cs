@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace ViewModel
 {
     public abstract class AViewModel : ViewModelBase
     {
+        #region treatment command
         private ICommand _import;
         public ICommand Import
         {
@@ -31,7 +33,19 @@ namespace ViewModel
                 this.RaisePropertyChanged();
             }
         }
+        #endregion
 
+        #region backgroundWorker
+        protected BackgroundWorker worker = new BackgroundWorker();
+        #endregion
+
+        #region constructor
+        public AViewModel()
+        {
+            worker.WorkerReportsProgress = true;
+            worker.RunWorkerAsync();
+        }
+        #endregion
         #region methode abstract
 
         protected abstract void OnImport(object parameter);

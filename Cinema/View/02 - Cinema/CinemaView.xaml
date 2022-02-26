@@ -39,6 +39,7 @@
 
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding Cinemas}"
+                  SelectedItem="{Binding Selected}"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"/>
 

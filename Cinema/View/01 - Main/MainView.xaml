@@ -14,9 +14,9 @@
 
         </Grid.ColumnDefinitions>
         <StackPanel Width="70">
-            <Button Content="Cinema" Command="{Binding GoToCinema}" CommandParameter="{Binding CinemaViewModel}"/>
+            <Button Content="Cinema" Command="{Binding ShowCinemas}" CommandParameter="Cinema"/>
 
-            <Button Content="Film" Command="{Binding GoToFilm}" CommandParameter="{Binding FilmViewModel}"/>
+            <Button Content="Film" Command="{Binding ShowFilms}" CommandParameter="Film"/>
         </StackPanel>
 
         <!--the active view-->

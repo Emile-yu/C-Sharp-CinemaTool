@@ -17,6 +17,11 @@ namespace Tools
         #endregion
 
         #region constructor
+        public ActionCommand(Action<object> execute) : this(execute, DefaultCanExecute)
+        {
+
+        }
+
         public ActionCommand(Action<object> execute, Predicate<object> canExecute)
         {
             if (execute != null)
@@ -48,5 +53,11 @@ namespace Tools
         {
             this._execute(parameter);
         }
+
+        private static bool DefaultCanExecute(object _parameter)
+        {
+            return true;
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,19 @@ namespace ViewModel
 {
     public class CinemaViewModel : AViewModel
     {
+        private ICommand _selected;
+
+        public ICommand Selected
+        {
+            get { return _selected; }
+            set
+            {
+                _selected = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+
         private ObservableCollection<CinemaItem> _cinemas;
         public ObservableCollection<CinemaItem> Cinemas
         {
@@ -24,11 +38,25 @@ namespace ViewModel
                 this.RaisePropertyChanged();
             }
         }
-        public CinemaViewModel() 
+        public CinemaViewModel() : base()
         {
-            LoadCinemas();
+            this.worker.DoWork += DoWorker;
+            //LoadCinemas();
+
             this.Import = new ActionCommand(OnImport, param => { return true; });
             this.CreateFiles = new ActionCommand(OnCreateFiles, param => { return true; });
+
+            this.Selected = new ActionCommand(OnSelected, param => { return true;});
+        }
+
+        private void OnSelected(object parameter)
+        {
+            MessageBox.Show("Hello");
+        }
+
+        private void DoWorker(object sender, DoWorkEventArgs e)
+        {
+            LoadCinemas();
         }
 
         private void LoadCinemas()
